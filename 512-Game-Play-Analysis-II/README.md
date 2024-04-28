@@ -1,6 +1,7 @@
 512. Game Play Analysis II
-Table: Activity
 ```
+Table: Activity
+
 +--------------+---------+
 | Column Name  | Type    |
 +--------------+---------+
