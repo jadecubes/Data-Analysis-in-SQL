@@ -1,24 +1,19 @@
--- By PARTITION
-WITH CTE AS (
+WITH Managers AS (
     SELECT
-        player_id,
-        device_id,
-        ROW_NUMBER() OVER (PARTITION BY player_id ORDER BY event_date) AS rn
-    FROM Activity
+        managerId
+    FROM
+        Employee
+    WHERE
+        managerId IS NOT NULL
+    GROUP BY
+        managerId
+    HAVING
+        COUNT(*) >= 5
 )
-SELECT player_id, device_id
-FROM CTE
-WHERE rn = 1;
 
-
--- BY GROUP BY
-WITH CTE AS (
-    SELECT
-        player_id,
-        MIN(event_date) AS min_event_date,
-        device_id
-    FROM Activity
-    GROUP BY player_id, device_id
-)
-SELECT CTE.player_id, CTE.device_id
-FROM CTE;
+SELECT
+    E.name
+FROM
+    Employee AS E
+JOIN
+    Managers ON E.id = Managers.managerId;
