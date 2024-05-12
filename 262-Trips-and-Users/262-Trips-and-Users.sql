@@ -37,7 +37,7 @@ total_requests AS (
 
 SELECT
   tr.request_at,
-  ROUND((COUNT(ct.id) * 100.0) / tr.total_requests, 2) AS cancellation_rate
+  ROUND((COUNT(ct.id) * 1.0) / tr.total_requests, 2) AS cancellation_rate
 FROM
   total_requests tr
 LEFT JOIN
